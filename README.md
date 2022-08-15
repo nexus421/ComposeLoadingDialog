@@ -6,6 +6,10 @@ I use this Dialogs in all my projects. As a Knight Rider fan, I love the Kitt ru
 The class LoadingDialog provides a ready to use Dialog. If you want to change edit some things to the Kitt-loading-light, you can directly
 change some parameteres in KittLoadingDialog.
 
+It's now on Jitpack!
+In settings.gradle, add maven { url 'https://jitpack.io' }
+In your build.gradle add implementation 'com.github.nexus421:ComposeLoadingDialog:1.0.0'
+
 Enjoy and do whatever you want to do with this small and simple Dialogs!
 
 ![Screenshot_1649584287](https://user-images.githubusercontent.com/24206344/162612627-b1b85866-0455-4742-aba2-0719dd828ce3.png)
