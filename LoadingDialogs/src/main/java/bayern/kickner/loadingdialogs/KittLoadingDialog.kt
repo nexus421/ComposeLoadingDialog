@@ -1,4 +1,4 @@
-package bayern.kickner.composeloadingdialog
+package bayern.kickner.loadingdialogs
 
 import androidx.annotation.IntRange
 import androidx.compose.animation.*

@@ -1,4 +1,4 @@
-package bayern.kickner.composeloadingdialog
+package bayern.kickner.loadingdialogs
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*

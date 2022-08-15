@@ -15,6 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import bayern.kickner.composeloadingdialog.ui.theme.ComposeLoadingDialogTheme
+import bayern.kickner.loadingdialogs.LoadingDialog
+import bayern.kickner.loadingdialogs.Type
 import kotlinx.coroutines.delay
 import kotlin.concurrent.thread
 
