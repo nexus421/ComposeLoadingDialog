@@ -23,11 +23,68 @@ enum class Type {
  * This is a ready to use Loading Dialog.
  * You are able to choose between three loading types --> Circle, Line or Kitt!
  *
- * @param show true if Dialog should be visible
  * @param msg Nachricht die dem Nutzer unter der Ladeanzeige angezeigt werden kann. - Message, visibile to user
  * @param type Art der Ladeanzeige. Type of LoadingDialog
  * @param progressColor Farbe der Ladeanzeige. LoadingDialog color
+ * @param onDismissRequest Will be called if the user presses on empty space or on the back button
+ * @param contentBelowLoading Content below the loading animation. Default is a Text
  */
+@ExperimentalAnimationApi
+@Composable
+fun LoadingDialog(
+    msg: String = "",
+    type: Type = Type.CIRCLE,
+    progressColor: Color = MaterialTheme.colors.primary,
+    onDismissRequest: (() -> Unit)? = null,
+    contentBelowLoading: @Composable () -> Unit = {
+        Text(
+            text = msg,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
+) {
+    Dialog(onDismissRequest = {
+        onDismissRequest?.let { it() }
+    }) {
+        Column {
+            when (type) {
+                Type.CIRCLE -> CircularProgressIndicator(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    color = progressColor
+                )
+                Type.LINE -> LinearProgressIndicator(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    color = progressColor
+                )
+                else -> {
+                    KittLoadingLightAnimated()
+                }
+            }
+
+            contentBelowLoading()
+        }
+    }
+}
+
+/**
+ * Dialog der einen Ladebalken oder Ladekreis anzeigt, wenn zB eine Aktion im Hintergrund ausgeführt wird.
+ * Die Ladeanzeige bewegt sich kontinuierlich.
+ *
+ * This is a ready to use Loading Dialog.
+ * You are able to choose between three loading types --> Circle, Line or Kitt!
+ *
+ * @param msg Nachricht die dem Nutzer unter der Ladeanzeige angezeigt werden kann. - Message, visibile to user
+ * @param type Art der Ladeanzeige. Type of LoadingDialog
+ * @param progressColor Farbe der Ladeanzeige. LoadingDialog color
+ * @param onDismissRequest Will be called if the user presses on empty space or on the back button
+ * @param contentBelowLoading Content below the loading animation. Default is a Text
+ */
+@Deprecated("show is not a good practice. Will be removed in future", ReplaceWith("LoadingDialog"))
 @ExperimentalAnimationApi
 @Composable
 fun LoadingDialog(
@@ -35,7 +92,18 @@ fun LoadingDialog(
     msg: String = "",
     type: Type = Type.CIRCLE,
     progressColor: Color = MaterialTheme.colors.primary,
-    onDismissRequest: (() -> Unit)? = null
+    onDismissRequest: (() -> Unit)? = null,
+    contentBelowLoading: @Composable () -> Unit = {
+        Text(
+            text = msg,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp),
+            textAlign = TextAlign.Center,
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
 ) {
     if(show.not()) return
 
@@ -57,15 +125,7 @@ fun LoadingDialog(
                 }
             }
 
-            Text(
-                text = msg,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp),
-                textAlign = TextAlign.Center,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+            contentBelowLoading()
         }
     }
 }
