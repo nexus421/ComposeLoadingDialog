@@ -1,14 +1,18 @@
 # ComposeLoadingDialog
+
 This is a small collection for 3 different Loading-Dialogs.
-Especially the KittLoadingDialog is my personal favorit and ready-to-use. 
+Especially the KittLoadingDialog is my personal favorit and ready-to-use.
 I use this Dialogs in all my projects. As a Knight Rider fan, I love the Kitt running light!
 
-The class LoadingDialog provides a ready to use Dialog. If you want to change edit some things to the Kitt-loading-light, you can directly
+The class LoadingDialog provides a ready to use Dialog for KITT (default), CIRCLE and LINE. If you want to change some things to the
+Kitt-loading-light, you can directly
 change some parameteres in KittLoadingDialog.
+
+Use the LoadingDialogWithProgress composable to display a progress as circle or line.
 
 It's now on Jitpack!
 In settings.gradle, add maven { url 'https://jitpack.io' }
-In your build.gradle add implementation 'com.github.nexus421:ComposeLoadingDialog:1.0.0'
+In your build.gradle add implementation 'com.github.nexus421:ComposeLoadingDialog:2.0.0'
 
 Enjoy and do whatever you want to do with this small and simple Dialogs!
 

@@ -1,8 +1,12 @@
 package bayern.kickner.loadingdialogs
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,11 +33,10 @@ enum class Type {
  * @param onDismissRequest Will be called if the user presses on empty space or on the back button
  * @param contentBelowLoading Content below the loading animation. Default is a Text
  */
-@ExperimentalAnimationApi
 @Composable
 fun LoadingDialog(
     msg: String = "",
-    type: Type = Type.CIRCLE,
+    type: Type = Type.KITT,
     progressColor: Color = MaterialTheme.colors.primary,
     onDismissRequest: (() -> Unit)? = null,
     contentBelowLoading: @Composable () -> Unit = {
@@ -48,65 +51,6 @@ fun LoadingDialog(
         )
     }
 ) {
-    Dialog(onDismissRequest = {
-        onDismissRequest?.let { it() }
-    }) {
-        Column {
-            when (type) {
-                Type.CIRCLE -> CircularProgressIndicator(
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    color = progressColor
-                )
-                Type.LINE -> LinearProgressIndicator(
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    color = progressColor
-                )
-                else -> {
-                    KittLoadingLightAnimated()
-                }
-            }
-
-            contentBelowLoading()
-        }
-    }
-}
-
-/**
- * Dialog der einen Ladebalken oder Ladekreis anzeigt, wenn zB eine Aktion im Hintergrund ausgeführt wird.
- * Die Ladeanzeige bewegt sich kontinuierlich.
- *
- * This is a ready to use Loading Dialog.
- * You are able to choose between three loading types --> Circle, Line or Kitt!
- *
- * @param msg Nachricht die dem Nutzer unter der Ladeanzeige angezeigt werden kann. - Message, visibile to user
- * @param type Art der Ladeanzeige. Type of LoadingDialog
- * @param progressColor Farbe der Ladeanzeige. LoadingDialog color
- * @param onDismissRequest Will be called if the user presses on empty space or on the back button
- * @param contentBelowLoading Content below the loading animation. Default is a Text
- */
-@Deprecated("show is not a good practice. Will be removed in future", ReplaceWith("LoadingDialog"))
-@ExperimentalAnimationApi
-@Composable
-fun LoadingDialog(
-    show: Boolean,
-    msg: String = "",
-    type: Type = Type.CIRCLE,
-    progressColor: Color = MaterialTheme.colors.primary,
-    onDismissRequest: (() -> Unit)? = null,
-    contentBelowLoading: @Composable () -> Unit = {
-        Text(
-            text = msg,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            textAlign = TextAlign.Center,
-            maxLines = 2,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
-) {
-    if(show.not()) return
-
     Dialog(onDismissRequest = {
         onDismissRequest?.let { it() }
     }) {

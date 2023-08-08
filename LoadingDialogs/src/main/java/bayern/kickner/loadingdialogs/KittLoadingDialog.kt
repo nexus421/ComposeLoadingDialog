@@ -1,11 +1,32 @@
 package bayern.kickner.loadingdialogs
 
 import androidx.annotation.IntRange
-import androidx.compose.animation.*
-import androidx.compose.animation.core.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
@@ -16,7 +37,7 @@ private const val Start = -0.2f
 private const val End = 1.2f
 
 /**
- * You should use #KittLoadingLightAnimated.
+ * You should use [KittLoadingLightAnimated].
  * But this will work without experimental features.
  */
 @Composable
@@ -79,8 +100,10 @@ private const val END_NEW_LIGHT = 1f
 
 /**
  * Dynamisches Lauflicht aus Knigh Rider mit der Animation API.
- * Dynamic Light from Knight Rider. Build with the Animation API. Currently Experimental.
+ * Dynamic Light from Knight Rider. Build with the Animation API.
  * Prefered Way!
+ *
+ * Better use the simple pre-defined [LoadingDialog]
  *
  * This is the raw-method. Use LoadingDialog for prepaired and ready to use Dialog!
  *
@@ -95,7 +118,7 @@ private const val END_NEW_LIGHT = 1f
  * @param durationIn Zeit, bis das Segment die volle Farbstärke erreicht hat (Einblenden) (Alpha = 1)
  * @param durationOut Zeit, bis das Segment komplett ausgeblendet wird (Ausblenden) (Alpha = 0)
  */
-@ExperimentalAnimationApi
+
 @Composable
 fun KittLoadingLightAnimated(
     @IntRange(from = 3, to = 30) segments: Int = 8,
@@ -152,7 +175,6 @@ fun KittLoadingLightAnimated(
     }
 }
 
-@ExperimentalAnimationApi
 @Composable
 private fun SingleLightElement(
     visible: Boolean,
