@@ -54,7 +54,7 @@ fun KittLoadingLight(
     var part by remember { mutableStateOf(0) }
     var runForwards by remember { mutableStateOf(true) }
 
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "")
     val progress by infiniteTransition.animateFloat(
         if (runForwards) Start else End,
         if (runForwards) End else Start,
@@ -64,7 +64,7 @@ fun KittLoadingLight(
                 (if (runForwards) Start else End) at 0 with CubicBezierEasing(0.2f, 0f, 0.8f, 1f)
                 (if (runForwards) End else Start) at duration
             }
-        )
+        ), label = "Kitt"
     )
 
     part = (progress * 10).roundToInt()
@@ -135,7 +135,7 @@ fun KittLoadingLightAnimated(
     check(segments in 3..30)
     check(duration in 250..Int.MAX_VALUE)
 
-    val infiniteTransition = rememberInfiniteTransition()
+    val infiniteTransition = rememberInfiniteTransition(label = "Kitt")
     val progress by infiniteTransition.animateFloat(
         START_NEW_LIGHT,
         segments.toFloat(),
@@ -144,7 +144,7 @@ fun KittLoadingLightAnimated(
             animation = keyframes {
                 durationMillis = duration
             }
-        )
+        ), label = "Kitt"
     )
 
     Row(

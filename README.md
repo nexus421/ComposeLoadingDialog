@@ -12,7 +12,7 @@ Use the LoadingDialogWithProgress composable to display a progress as circle or 
 
 It's now on Jitpack!
 In settings.gradle, add maven { url 'https://jitpack.io' }
-In your build.gradle add implementation 'com.github.nexus421:ComposeLoadingDialog:2.0.0'
+In your build.gradle add implementation 'com.github.nexus421:ComposeLoadingDialog:2.0.1'
 
 Enjoy and do whatever you want to do with this small and simple Dialogs!
 
