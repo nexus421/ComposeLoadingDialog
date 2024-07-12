@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -51,7 +52,7 @@ fun KittLoadingLight(
     duration: Int = 2500
 ) {
 
-    var part by remember { mutableStateOf(0) }
+    var part by remember { mutableIntStateOf(0) }
     var runForwards by remember { mutableStateOf(true) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "")
@@ -118,7 +119,6 @@ private const val END_NEW_LIGHT = 1f
  * @param durationIn Zeit, bis das Segment die volle Farbstärke erreicht hat (Einblenden) (Alpha = 1)
  * @param durationOut Zeit, bis das Segment komplett ausgeblendet wird (Ausblenden) (Alpha = 0)
  */
-
 @Composable
 fun KittLoadingLightAnimated(
     @IntRange(from = 3, to = 30) segments: Int = 8,

@@ -3,10 +3,10 @@ package bayern.kickner.loadingdialogs
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.LinearProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,7 +37,7 @@ enum class Type {
 fun LoadingDialog(
     msg: String = "",
     type: Type = Type.KITT,
-    progressColor: Color = MaterialTheme.colors.primary,
+    progressColor: Color = MaterialTheme.colorScheme.primary,
     onDismissRequest: (() -> Unit)? = null,
     contentBelowLoading: @Composable () -> Unit = {
         Text(
@@ -51,9 +51,7 @@ fun LoadingDialog(
         )
     }
 ) {
-    Dialog(onDismissRequest = {
-        onDismissRequest?.let { it() }
-    }) {
+    Dialog(onDismissRequest = onDismissRequest ?: {}) {
         Column {
             when (type) {
                 Type.CIRCLE -> CircularProgressIndicator(
@@ -91,17 +89,17 @@ fun LoadingDialog(
 @Composable
 fun LoadingDialogWithProgress(
     progress: Float, msg: String = "", circle: Boolean = true,
-    progressColor: Color = MaterialTheme.colors.primary
+    progressColor: Color = MaterialTheme.colorScheme.primary
 ) {
     Dialog(onDismissRequest = { }) {
         Column {
             if (circle) CircularProgressIndicator(
-                progress = progress,
+                progress = { progress },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 color = progressColor
             )
             else LinearProgressIndicator(
-                progress = progress,
+                progress = { progress },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 color = progressColor
             )
