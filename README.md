@@ -34,11 +34,9 @@ The dialogs are highly customizable and easy to integrate into any project.
 Add the following to your project's `settings.gradle` file:
 
 ```gradle
-dependencyResolutionManagement {
-    repositories {
-        // ... other repositories
-        maven { url 'https://jitpack.io' }
-    }
+maven {
+    name = "nexus421Maven"
+    url = uri("https://maven.kickner.bayern/<repository>")
 }
 ```
 
@@ -47,9 +45,7 @@ dependencyResolutionManagement {
 Add the dependency to your module's `build.gradle` file:
 
 ```gradle
-dependencies {
-    implementation("com.github.nexus421:ComposeLoadingDialog:2.1.1")
-}
+implementation("bayern.kickner:ComposeLoadingDialog:2.1.2")
 ```
 
 ## Usage
