@@ -1,7 +1,5 @@
 # ComposeLoadingDialog
 
-[![](https://jitpack.io/v/nexus421/ComposeLoadingDialog.svg)](https://jitpack.io/#nexus421/ComposeLoadingDialog)
-
 A collection of beautiful and customizable loading dialogs for Jetpack Compose, including the iconic KITT running light
 from Knight Rider!
 
