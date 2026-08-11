@@ -34,7 +34,7 @@ Add the following to your project's `settings.gradle` file:
 ```gradle
 maven {
     name = "nexus421Maven"
-    url = uri("https://maven.kickner.bayern/<repository>")
+    url = uri("https://maven.kickner.bayern/releases")
 }
 ```
 
